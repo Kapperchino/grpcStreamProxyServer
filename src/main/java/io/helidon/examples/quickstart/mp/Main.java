@@ -16,25 +16,30 @@
 
 package io.helidon.examples.quickstart.mp;
 
-import io.helidon.common.LogConfig;
 import io.helidon.config.Config;
-import io.helidon.grpc.server.GrpcRouting;
-import io.helidon.grpc.server.GrpcServer;
-import io.helidon.grpc.server.GrpcServerConfiguration;
-import io.helidon.health.HealthSupport;
-import io.helidon.health.checks.HealthChecks;
-import io.helidon.webserver.Routing;
-import io.helidon.webserver.WebServer;
+import io.helidon.grpc.server.GrpcRoutingImpl;
 import io.helidon.microprofile.server.Server;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.bridge.SLF4JBridgeHandler;
+
+import java.util.logging.LogManager;
+
+
 /**
  * A basic example of a Helidon gRPC server.
  */
+@Slf4j
 public class Main {
+    static {
+        LogManager.getLogManager().reset();
+        SLF4JBridgeHandler.removeHandlersForRootLogger();
+        SLF4JBridgeHandler.install();
+    }
+
     public static void main(String[] args) {
         // By default this will pick up application.yaml from the classpath
-        Config config = Config.create();
-        var server = Server.create().start();
-
+        var server = Server.create();
+        server.start();
     }
 
 }

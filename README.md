@@ -5,6 +5,7 @@ Sample Helidon MP project that includes multiple REST operations.
 ## Build and run
 
 With JDK11+
+
 ```bash
 mvn package
 java -jar target/helidon-quickstart-mp.jar
@@ -68,8 +69,8 @@ kubectl get pods                             # Wait for quickstart pod to be RUN
 kubectl get service helidon-quickstart-mp    # Verify deployed service
 ```
 
-Note the PORTs. You can now exercise the application as you did before but use the second
-port number (the NodePort) instead of 8080.
+Note the PORTs. You can now exercise the application as you did before but use the second port number (the NodePort)
+instead of 8080.
 
 After you’re done, cleanup.
 
@@ -79,18 +80,18 @@ kubectl delete -f app.yaml
 
 ## Build a native image with GraalVM
 
-GraalVM allows you to compile your programs ahead-of-time into a native
- executable. See https://www.graalvm.org/docs/reference-manual/aot-compilation/
- for more information.
+GraalVM allows you to compile your programs ahead-of-time into a native executable.
+See https://www.graalvm.org/docs/reference-manual/aot-compilation/
+for more information.
 
 You can build a native executable in 2 different ways:
+
 * With a local installation of GraalVM
 * Using Docker
 
 ### Local build
 
-Download Graal VM at https://www.graalvm.org/downloads, the version
- currently supported for Helidon is `20.1.0`.
+Download Graal VM at https://www.graalvm.org/downloads, the version currently supported for Helidon is `20.1.0`.
 
 ```
 # Setup the environment
@@ -100,10 +101,10 @@ mvn package -Pnative-image
 ```
 
 You can also put the Graal VM `bin` directory in your PATH, or pass
- `-DgraalVMHome=/path` to the Maven command.
+`-DgraalVMHome=/path` to the Maven command.
 
 See https://github.com/oracle/helidon-build-tools/tree/master/helidon-maven-plugin#goal-native-image
- for more information.
+for more information.
 
 Start the application:
 
@@ -125,19 +126,18 @@ Start the application:
 docker run --rm -p 8080:8080 helidon-quickstart-mp-native:latest
 ```
 
-
 ## Build a Java Runtime Image using jlink
 
-You can build a custom Java Runtime Image (JRI) containing the application jars and the JDK modules
-on which they depend. This image also:
+You can build a custom Java Runtime Image (JRI) containing the application jars and the JDK modules on which they
+depend. This image also:
 
 * Enables Class Data Sharing by default to reduce startup time.
 * Contains a customized `start` script to simplify CDS usage and support debug and test modes.
 
 You can build a custom JRI in two different ways:
+
 * Local
 * Using Docker
-
 
 ### Local build
 
@@ -147,7 +147,7 @@ mvn package -Pjlink-image
 ```
 
 See https://github.com/oracle/helidon-build-tools/tree/master/helidon-maven-plugin#goal-jlink-image
- for more information.
+for more information.
 
 Start the application:
 

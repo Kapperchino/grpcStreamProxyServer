@@ -16,17 +16,14 @@ package io.helidon.examples.quickstart.mp;
  * limitations under the License.
  */
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+import io.grpc.stub.StreamObserver;
 import io.helidon.grpc.server.CollectingObserver;
 import io.helidon.microprofile.grpc.core.*;
 
-import io.grpc.stub.StreamObserver;
 import javax.enterprise.context.ApplicationScoped;
 import javax.ws.rs.ApplicationPath;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The gRPC StringService implementation.
@@ -43,7 +40,7 @@ public class StringService {
     /**
      * Convert a string value to upper case.
      *
-     * @param request  the request containing the string to convert
+     * @param request the request containing the string to convert
      * @return the request value converted to upper case
      */
     @Unary
@@ -54,8 +51,8 @@ public class StringService {
     /**
      * Convert a string value to lower case.
      *
-     * @param request  the request containing the string to convert
-     * @return  the request converted to lower case
+     * @param request the request containing the string to convert
+     * @return the request converted to lower case
      */
     @Unary
     public String lower(String request) {
@@ -64,8 +61,9 @@ public class StringService {
 
     /**
      * Split a space delimited string value and stream back the split parts.
-     * @param request  the request containing the string to split
-     * @return  a {@link java.util.stream.Stream} containing the split parts
+     *
+     * @param request the request containing the string to split
+     * @return a {@link java.util.stream.Stream} containing the split parts
      */
     @ServerStreaming
     public Stream<String> split(String request) {
@@ -74,8 +72,9 @@ public class StringService {
 
     /**
      * Join a stream of string values and return the result.
-     * @param observer  the request containing the string to split
-     * @return  a {@link java.util.stream.Stream} containing the split parts
+     *
+     * @param observer the request containing the string to split
+     * @return a {@link java.util.stream.Stream} containing the split parts
      */
     @ClientStreaming
     public StreamObserver<String> join(StreamObserver<String> observer) {
@@ -84,8 +83,9 @@ public class StringService {
 
     /**
      * Echo each value streamed from the client back to the client.
-     * @param observer  the {@link io.grpc.stub.StreamObserver} to send responses to
-     * @return  the {@link io.grpc.stub.StreamObserver} to receive requests from
+     *
+     * @param observer the {@link io.grpc.stub.StreamObserver} to send responses to
+     * @return the {@link io.grpc.stub.StreamObserver} to receive requests from
      */
     @Bidirectional
     public StreamObserver<String> echo(StreamObserver<String> observer) {

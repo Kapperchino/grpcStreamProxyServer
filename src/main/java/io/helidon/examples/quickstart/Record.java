@@ -1,13 +1,16 @@
 package io.helidon.examples.quickstart;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
-public class Record<K,V> {
-    public K key;
-    public V val;
+public class Record<K, V> {
     public long offset;
-    public String topic;
+    @NonNull
+    private K key;
+    private V val;
+    @NonNull
+    private String topic;
 }
